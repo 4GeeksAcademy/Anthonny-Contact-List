@@ -1,3 +1,8 @@
-/* 
-    General Styles
-*/
+h1 {
+    font-style: italic;
+    font-size: 60px;
+    -webkit-text-stroke-width: 3px;
+    -webkit-text-stroke-color: black;
+    color: white;
+    text-align: center;
+}
