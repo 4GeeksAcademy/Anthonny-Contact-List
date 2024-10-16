@@ -1,9 +1,10 @@
-import React, { useContext, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import React, { useContext, useEffect, useState } from 'react';
+import { Link, useParams, useNavigate } from 'react-router-dom';
 import { Context } from '../store/appContext';
 
-export const AddContact = () => {
-    const { actions } = useContext(Context);
+export const UpdateContact = () => {
+    const { actions, store } = useContext(Context);
+    const { id } = useParams();
     const navigate = useNavigate();
 
     const [formData, setFormData] = useState({
@@ -13,6 +14,13 @@ export const AddContact = () => {
         address: ''
     });
 
+    useEffect(() => {
+        const contact = store.contacts.find(contact => contact.id === parseInt(id));
+        if (contact) {
+            setFormData(contact);
+        }
+    }, [id, store.contacts]);
+
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData({ ...formData, [name]: value });
@@ -20,13 +28,13 @@ export const AddContact = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        await actions.createContact(formData);
+        await actions.updateContact(id, formData);
         navigate('/home');
     };
 
     return (
         <div className="container mt-5">
-            <h1 className="text-center">Add New Contact</h1>
+            <h1 className="text-center">Update Contact</h1>
             <div className="d-flex justify-content-center">
                 <form className="w-50" onSubmit={handleSubmit}>
                     <div className="row mb-3">
