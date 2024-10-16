@@ -1,38 +1,44 @@
 import React from "react";
-import "../../styles/home.css";
+import { Link } from "react-router-dom";
+import "../../styles/index.css";
 
 export const Home = () => {
-    // Lista de contactos de ejemplo
-    const contacts = [
-        {
-            id: 1,
-            name: "John Doe",
-            address: "1234 Elm Street",
-            phone: "(555) 123-4567",
-            email: "john@example.com",
-            avatar: "https://via.placeholder.com/150"
-        },
-        {
-            id: 2,
-            name: "Jane Smith",
-            address: "5678 Oak Avenue",
-            phone: "(555) 987-6543",
-            email: "jane@example.com",
-            avatar: "https://via.placeholder.com/150"
-        },
-        {
-            id: 3,
-            name: "Bob Johnson",
-            address: "910 Maple Road",
-            phone: "(555) 246-8102",
-            email: "bob@example.com",
-            avatar: "https://via.placeholder.com/150"
-        }
-    ];
+
+	const contacts = [
+		{
+			id: 1,
+			name: "John Doe",
+			address: "1234 Elm Street",
+			phone: "(555) 123-4567",
+			email: "john@example.com",
+			avatar: "https://via.placeholder.com/150"
+		},
+		{
+			id: 2,
+			name: "Jane Smith",
+			address: "5678 Oak Avenue",
+			phone: "(555) 987-6543",
+			email: "jane@example.com",
+			avatar: "https://via.placeholder.com/150"
+		},
+		{
+			id: 3,
+			name: "Bob Johnson",
+			address: "910 Maple Road",
+			phone: "(555) 246-8102",
+			email: "bob@example.com",
+			avatar: "https://via.placeholder.com/150"
+		}
+	];
 
 	return (
 		<div className="container mt-5">
 			<h1 className="text-center">Contact List</h1>
+			<div className="d-flex justify-content-end mb-4" style={{ maxWidth: "900px", margin: "0 auto" }}>
+				<Link to="/addcontact">
+					<button className="btn btn-success">Add new contact</button>
+				</Link>
+			</div>
 
 			<ul className="list-group mx-auto" style={{ maxWidth: "900px" }}>
 				{contacts.map(contact => (
@@ -64,9 +70,9 @@ export const Home = () => {
 							<i className="fa-solid fa-pencil" style={{ cursor: "pointer", marginRight: "45px" }}></i>
 							<i className="fa-solid fa-trash-can" style={{ cursor: "pointer", marginRight: "30px" }}></i>
 						</div>
-					</li>				
+					</li>
 				))}
 			</ul>
 		</div>
-	);	
+	);
 };
